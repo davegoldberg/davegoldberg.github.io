@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+  <head>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <title>David Goldberg</title>
+    <style type='text/css'>
+      body    { background-color:black; color:#ffb700; }
+      a[href] { color:#ffb700; text-decoration:none; }
+      #orange { color:#ffb700; }
+      .fn     { color:#fff000; }
+    </style>
+
+    <script type='text/javascript'>
+      function init() {
+	  document.onkeydown = f_keys;
+      }
+      
+      function f_keys(k) {
+	  if (k.keyCode >= 112 && k.keyCode <= 120) {
+	      var f = 'F' + (k.keyCode-111);
+	      window.location = document.getElementById(f).href;
+	  }
+      }
+    </script>
+  </head>
+  
+  <body onload='init();'>
+    <center>
+      <pre>	
++------------------------------------------------------------------------------+
+|                                                                              |
+|                              DAVID GOLDBERG                                  |
+|                              ===================                             |
+|                                                                              |
+|                                                                              |
+|  ABOUT                                                                       |
+|  -----               --------                                                |
+|                                                                              |
+|  <a id='F1' href='http://fanatics.com/'>FANATICS COLLECTIBLES </a> CTO       |       
+|  <a href='https://ghostwrite.com/'>GHOSTWRITE </a>    Cofounder              |
+|                                                                              |
+|                                                                              |
++------------------------------------------------------------------------------+
+      </pre>
+    </center>
+</body>
+</html>
+
