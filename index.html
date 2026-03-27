@@ -14,6 +14,24 @@
         text-shadow: 0 0 10px #4bc853, 0 0 25px #3a9e40, 0 0 50px #2a7e30;
       }
       a[href] { color:#4bc853; text-decoration:none; }
+      #crt-scanlines, #crt-vignette {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        pointer-events: none;
+      }
+      #crt-scanlines {
+        background: repeating-linear-gradient(
+          0deg,
+          transparent, transparent 3px,
+          rgba(0, 255, 0, 0.018) 3px,
+          rgba(0, 255, 0, 0.018) 4px
+        );
+        z-index: 100;
+      }
+      #crt-vignette {
+        background: radial-gradient(ellipse at center, transparent 55%, rgba(0,0,0,0.8) 100%);
+        z-index: 101;
+      }
       #screen {
         display: flex;
         align-items: center;
@@ -26,6 +44,8 @@
   </head>
   
   <body>
+    <div id="crt-scanlines"></div>
+    <div id="crt-vignette"></div>
     <div id="screen">
       <pre>
 +------------------------------------------------------------------------------+
