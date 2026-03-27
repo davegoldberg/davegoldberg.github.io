@@ -48,27 +48,11 @@
         animation: blink 1s step-end infinite;
       }
 
-      /* Mobile layout */
-      #mobile {
-        display: none;
-        padding: 32px 24px;
-        line-height: 1.8;
-        font-size: 14px;
-      }
-      #mobile .name {
-        font-size: 18px;
-        font-weight: bold;
-        margin-bottom: 2px;
-      }
-      #mobile .underline { margin-bottom: 20px; }
-      #mobile .section-label { margin-bottom: 4px; }
-      #mobile .divider { margin-bottom: 12px; }
-      #mobile .entry { margin-bottom: 4px; }
-
       @media (max-width: 600px) {
         #terminal { display: none; }
         #mobile { display: block; }
       }
+      #mobile { display: none; }
     </style>
 
   </head>
@@ -78,17 +62,7 @@
     <div id="crt-vignette"></div>
     <div id="screen">
       <pre id="terminal"></pre>
-      <div id="mobile">
-        <div class="name"><a href="https://www.linkedin.com/in/davidtgoldberg/">DAVID GOLDBERG</a></div>
-        <div class="underline">==============</div>
-        <div class="section-label">HISTORY</div>
-        <div class="divider">-------</div>
-        <div class="entry"><a href="https://toasttab.com/">TOAST</a> // ENG LEADER</div>
-        <div class="entry"><a href="https://ghostwrite.com/">GHOSTWRITE</a> // COFOUNDER</div>
-        <div class="entry"><a href="http://fanatics.com/">FANATICS COLLECTIBLES</a> // CPTO</div>
-        <div class="entry"><a href="http://meta.com/">META</a> // ENG LEADER</div>
-        <div class="entry"><a href="http://contently.com/">CONTENTLY</a> // COFOUNDER, CTO</div>
-      </div>
+      <pre id="mobile"></pre>
       <p id="inquiries">For Inquiries, please contact: ZGF2ZUB0aGVkZWNyeXB0LmNvbQ=</p>
     </div>
     <script>
@@ -130,10 +104,30 @@
         }
       }
 
-      // Only run type-in animation on desktop; on mobile just show cursor immediately
+      const mobileLines = [
+        '+--------------------------------+',
+        '|                                |',
+        '|       <a href="https://www.linkedin.com/in/davidtgoldberg/">DAVID GOLDBERG</a>          |',
+        '|       ==============           |',
+        '|                                |',
+        '|  HISTORY                       |',
+        '|  -------                       |',
+        '|                                |',
+        '|  <a href="https://toasttab.com/">TOAST</a> // ENG LEADER         |',
+        '|  <a href="https://ghostwrite.com/">GHOSTWRITE</a> // COFOUNDER    |',
+        '|  <a href="http://fanatics.com/">FANATICS</a> // CPTO            |',
+        '|  <a href="http://meta.com/">META</a> // ENG LEADER           |',
+        '|  <a href="http://contently.com/">CONTENTLY</a> // CTO           |',
+        '|                                |',
+        '+--------------------------------+'
+      ];
+
+      // Only run type-in animation on desktop; on mobile populate box statically
       if (window.innerWidth > 600) {
         typeLine();
       } else {
+        const mobile = document.getElementById('mobile');
+        mobile.innerHTML = mobileLines.join('\n');
         const inquiries = document.getElementById('inquiries');
         inquiries.appendChild(cursorEl);
       }
