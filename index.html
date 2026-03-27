@@ -39,6 +39,14 @@
         min-height: 100vh;
         flex-direction: column;
       }
+      @keyframes blink {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0; }
+      }
+      .cursor {
+        display: inline-block;
+        animation: blink 1s step-end infinite;
+      }
     </style>
 
   </head>
@@ -47,27 +55,49 @@
     <div id="crt-scanlines"></div>
     <div id="crt-vignette"></div>
     <div id="screen">
-      <pre>
-+------------------------------------------------------------------------------+
-|                                                                              |
-|                              <a href="https://www.linkedin.com/in/davidtgoldberg/">DAVID GOLDBERG</a>                                  |
-|                              ==============                                  |
-|                                                                              |
-|                                                                              |
-|  HISTORY                                                                     |
-|  -------                                                                     |
-|                                                                              |
-|  <a href='https://toasttab.com/'>TOAST </a>  // ENG LEADER                                                       |
-|  <a href='https://ghostwrite.com/'>GHOSTWRITE </a>  //  COFOUNDER                                                  |
-|  <a href='http://fanatics.com/'>FANATICS COLLECTIBLES </a> //  CPTO                                             |
-|  <a href='http://meta.com/'>META </a> //  ENG LEADER                                                        |
-|  <a href='http://contently.com/'>CONTENTLY </a> //  COFOUNDER, CTO                                               |
-|                                                                              |
-|                                                                              |
-+------------------------------------------------------------------------------+
-For Inquiries, please contact: ZGF2ZUB0aGVkZWNyeXB0LmNvbQ=
-      </pre>
+      <pre id="terminal"></pre>
+      <p id="inquiries">For Inquiries, please contact: ZGF2ZUB0aGVkZWNyeXB0LmNvbQ=</p>
     </div>
+    <script>
+      const lines = [
+        '+------------------------------------------------------------------------------+',
+        '|                                                                              |',
+        '|                              <a href="https://www.linkedin.com/in/davidtgoldberg/">DAVID GOLDBERG</a>                                  |',
+        '|                              ==============                                  |',
+        '|                                                                              |',
+        '|                                                                              |',
+        '|  HISTORY                                                                     |',
+        '|  -------                                                                     |',
+        '|                                                                              |',
+        '|  <a href=\'https://toasttab.com/\'>TOAST </a>  // ENG LEADER                                                       |',
+        '|  <a href=\'https://ghostwrite.com/\'>GHOSTWRITE </a>  //  COFOUNDER                                                  |',
+        '|  <a href=\'http://fanatics.com/\'>FANATICS COLLECTIBLES </a> //  CPTO                                             |',
+        '|  <a href=\'http://meta.com/\'>META </a> //  ENG LEADER                                                        |',
+        '|  <a href=\'http://contently.com/\'>CONTENTLY </a> //  COFOUNDER, CTO                                               |',
+        '|                                                                              |',
+        '|                                                                              |',
+        '+------------------------------------------------------------------------------+'
+      ];
+
+      const terminal = document.getElementById('terminal');
+      const cursorEl = document.createElement('span');
+      cursorEl.className = 'cursor';
+      cursorEl.textContent = '▌';
+
+      let i = 0;
+      function typeLine() {
+        if (i < lines.length) {
+          terminal.innerHTML += (i === 0 ? '' : '\n') + lines[i];
+          i++;
+          setTimeout(typeLine, 80);
+        } else {
+          // Typing complete — append blinking cursor on last line
+          terminal.appendChild(document.createTextNode('\n'));
+          terminal.appendChild(cursorEl);
+        }
+      }
+      typeLine();
+    </script>
 </body>
 </html>
 
