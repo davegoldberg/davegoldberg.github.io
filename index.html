@@ -39,10 +39,6 @@
         min-height: 100vh;
         flex-direction: column;
       }
-      pre {
-        font-size: clamp(5px, 1.15vw, 14px);
-        overflow-x: hidden;
-      }
       @keyframes blink {
         0%, 100% { opacity: 1; }
         50% { opacity: 0; }
@@ -51,15 +47,48 @@
         display: inline-block;
         animation: blink 1s step-end infinite;
       }
+
+      /* Mobile layout */
+      #mobile {
+        display: none;
+        padding: 32px 24px;
+        line-height: 1.8;
+        font-size: 14px;
+      }
+      #mobile .name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 2px;
+      }
+      #mobile .underline { margin-bottom: 20px; }
+      #mobile .section-label { margin-bottom: 4px; }
+      #mobile .divider { margin-bottom: 12px; }
+      #mobile .entry { margin-bottom: 4px; }
+
+      @media (max-width: 600px) {
+        #terminal { display: none; }
+        #mobile { display: block; }
+      }
     </style>
 
   </head>
-  
+
   <body>
     <div id="crt-scanlines"></div>
     <div id="crt-vignette"></div>
     <div id="screen">
       <pre id="terminal"></pre>
+      <div id="mobile">
+        <div class="name"><a href="https://www.linkedin.com/in/davidtgoldberg/">DAVID GOLDBERG</a></div>
+        <div class="underline">==============</div>
+        <div class="section-label">HISTORY</div>
+        <div class="divider">-------</div>
+        <div class="entry"><a href="https://toasttab.com/">TOAST</a> // ENG LEADER</div>
+        <div class="entry"><a href="https://ghostwrite.com/">GHOSTWRITE</a> // COFOUNDER</div>
+        <div class="entry"><a href="http://fanatics.com/">FANATICS COLLECTIBLES</a> // CPTO</div>
+        <div class="entry"><a href="http://meta.com/">META</a> // ENG LEADER</div>
+        <div class="entry"><a href="http://contently.com/">CONTENTLY</a> // COFOUNDER, CTO</div>
+      </div>
       <p id="inquiries">For Inquiries, please contact: ZGF2ZUB0aGVkZWNyeXB0LmNvbQ=</p>
     </div>
     <script>
@@ -100,8 +129,14 @@
           inquiries.appendChild(cursorEl);
         }
       }
-      typeLine();
+
+      // Only run type-in animation on desktop; on mobile just show cursor immediately
+      if (window.innerWidth > 600) {
+        typeLine();
+      } else {
+        const inquiries = document.getElementById('inquiries');
+        inquiries.appendChild(cursorEl);
+      }
     </script>
   </body>
 </html>
-
