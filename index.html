@@ -91,9 +91,9 @@
           i++;
           setTimeout(typeLine, 80);
         } else {
-          // Typing complete — append blinking cursor on last line
-          terminal.appendChild(document.createTextNode('\n'));
-          terminal.appendChild(cursorEl);
+          // Typing complete — append blinking cursor after the inquiries line
+          const inquiries = document.getElementById('inquiries');
+          inquiries.appendChild(cursorEl);
         }
       }
       typeLine();
