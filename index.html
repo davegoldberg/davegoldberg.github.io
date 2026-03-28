@@ -104,20 +104,26 @@
         }
       }
 
+      // Each line: | + 32 visible chars + |
+      // Links add invisible HTML so we pass visible text separately to compute padding
+      function ml(visibleText, html) {
+        const pad = ' '.repeat(32 - visibleText.length);
+        return '|' + html + pad + '|';
+      }
       const mobileLines = [
         '+--------------------------------+',
         '|                                |',
-        '|       <a href="https://www.linkedin.com/in/davidtgoldberg/">DAVID GOLDBERG</a>          |',
+        ml('       DAVID GOLDBERG         ', '       <a href="https://www.linkedin.com/in/davidtgoldberg/">DAVID GOLDBERG</a>         '),
         '|       ==============           |',
         '|                                |',
         '|  HISTORY                       |',
         '|  -------                       |',
         '|                                |',
-        '|  <a href="https://toasttab.com/">TOAST</a> // ENG LEADER         |',
-        '|  <a href="https://ghostwrite.com/">GHOSTWRITE</a> // COFOUNDER    |',
-        '|  <a href="http://fanatics.com/">FANATICS</a> // CPTO            |',
-        '|  <a href="http://meta.com/">META</a> // ENG LEADER           |',
-        '|  <a href="http://contently.com/">CONTENTLY</a> // CTO           |',
+        ml('  TOAST // ENG LEADER         ', '  <a href="https://toasttab.com/">TOAST</a> // ENG LEADER         '),
+        ml('  GHOSTWRITE // COFOUNDER     ', '  <a href="https://ghostwrite.com/">GHOSTWRITE</a> // COFOUNDER     '),
+        ml('  FANATICS // CPTO            ', '  <a href="http://fanatics.com/">FANATICS</a> // CPTO            '),
+        ml('  META // ENG LEADER          ', '  <a href="http://meta.com/">META</a> // ENG LEADER          '),
+        ml('  CONTENTLY // CTO            ', '  <a href="http://contently.com/">CONTENTLY</a> // CTO            '),
         '|                                |',
         '+--------------------------------+'
       ];
